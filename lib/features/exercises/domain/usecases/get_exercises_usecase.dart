@@ -14,7 +14,7 @@ class GetExercisesUseCase {
     String? type,
     String? muscle,
     String? difficulty,
-    String? equipments,
+    List<String>? equipments,
   }) => _repository.getExercises(
     name: name,
     type: type,

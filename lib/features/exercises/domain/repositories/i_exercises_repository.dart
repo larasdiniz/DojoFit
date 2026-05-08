@@ -8,6 +8,6 @@ abstract class IExercisesRepository {
     String? type,
     String? muscle,
     String? difficulty,
-    String? equipments,
+    List<String>? equipments,
   });
 }
