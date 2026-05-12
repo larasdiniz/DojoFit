@@ -9,3 +9,4 @@
 
 * feat: implementação da camada Data (Models, DataSources e Repositories Implementation)
 * test: adição de testes unitários para o Repository e DataSources
+* fix: resolver erro de retorno nulo nos testes do datasource

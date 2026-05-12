@@ -15,10 +15,10 @@ class ExercisesDatasource {
   }) => _apiManager.get(
     '/v1/exercises',
     queryParameters: {
-      if (name != null) 'name': name,
-      if (type != null) 'type': type,
-      if (muscle != null) 'muscle': muscle,
-      if (difficulty != null) 'difficulty': difficulty,
+      'name': ?name,
+      'type': ?type,
+      'muscle': ?muscle,
+      'difficulty': ?difficulty,
       if (equipments?.isNotEmpty ?? false) 'equipment': equipments!.first,
     },
     mockReplyParams: MockReplyParams(
