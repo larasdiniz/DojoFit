@@ -1,5 +1,11 @@
 # CHANGELOG do DojoFit
 
+## 0.3.2
+
+* feat: implementação dos entrypoints (`main_prod` e `main_mock`) para alternância de ambientes
+* test: adição de testes unitários para a camada de Network e Datasource
+* refactor: ajustes configuração global de injeção de dependência
+
 ## 0.3.1
 
 * fix: correção da sintaxe de query parameters no `ExercisesDatasource`
