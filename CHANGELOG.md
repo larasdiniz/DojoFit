@@ -1,5 +1,8 @@
 # CHANGELOG do DojoFit
 
+## 0.3.3
+* fix: ajuste de importacao
+
 ## 0.3.2
 
 * feat: implementação dos entrypoints (`main_prod` e `main_mock`) para alternância de ambientes

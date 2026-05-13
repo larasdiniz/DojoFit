@@ -1,4 +1,4 @@
-import 'package:dojofit/features/exercises/domain/entities/exercise_entity.dart';
+import '../../domain/entities/exercise_entity.dart';
 
 extension type ExerciseModel(ExerciseEntity entity) implements ExerciseEntity {
   ExerciseModel.fromJson(Map<String, dynamic> json)

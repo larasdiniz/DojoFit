@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:pop_network/pop_network.dart';
+
 import 'network_logger.dart';
 
 class NetworkConfig {

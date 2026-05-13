@@ -1,4 +1,5 @@
 import 'dart:developer' as developer;
+
 import 'package:pop_network/pop_network.dart';
 
 class NetworkLogger extends PopNetworkLogInterceptor {

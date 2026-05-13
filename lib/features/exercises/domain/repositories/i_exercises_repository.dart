@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
-import 'package:dojofit/core/error/failures.dart';
-import 'package:dojofit/features/exercises/domain/entities/exercise_entity.dart';
+import '../../../../core/error/failures.dart';
+import '../entities/exercise_entity.dart';
 
 abstract class IExercisesRepository {
   Future<Either<Failure, List<ExerciseEntity>>> getExercises({

@@ -1,9 +1,9 @@
 import 'package:auto_injector/auto_injector.dart';
-import 'package:dojofit/core/network/network_config.dart';
-import 'package:dojofit/features/exercises/data/datasources/exercises_datasource.dart';
-import 'package:dojofit/features/exercises/data/repositories/exercises_repository_impl.dart';
-import 'package:dojofit/features/exercises/domain/repositories/i_exercises_repository.dart';
-import 'package:dojofit/features/exercises/domain/usecases/get_exercises_usecase.dart';
+import '../network/network_config.dart';
+import '../../features/exercises/data/datasources/exercises_datasource.dart';
+import '../../features/exercises/data/repositories/exercises_repository_impl.dart';
+import '../../features/exercises/domain/repositories/i_exercises_repository.dart';
+import '../../features/exercises/domain/usecases/get_exercises_usecase.dart';
 import 'package:pop_network/pop_network.dart';
 
 AutoInjector exercisesInjectorModule({bool isMock = false}) => AutoInjector(

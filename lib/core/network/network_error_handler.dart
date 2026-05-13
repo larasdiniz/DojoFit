@@ -1,4 +1,4 @@
-import 'package:dojofit/core/error/failures.dart';
+import '../error/failures.dart';
 import 'package:pop_network/pop_network.dart';
 
 class NetworkErrorHandler {

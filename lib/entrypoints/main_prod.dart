@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:dojofit/core/injectors/exercises_injector.dart';
+import '../core/injectors/exercises_injector.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
