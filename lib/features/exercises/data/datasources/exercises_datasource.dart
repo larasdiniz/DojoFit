@@ -3,9 +3,8 @@ import 'package:pop_network/pop_network.dart';
 class ExercisesDatasource {
   final IApiManager _apiManager;
 
-  ExercisesDatasource(this._apiManager);
+  ExercisesDatasource(this._apiManager); // isso é injecao de dependencia
 
-  // Note que usamos o tipo de retorno da biblioteca
   Future<Response<dynamic>> getExercises({
     String? name,
     String? type,
@@ -15,14 +14,14 @@ class ExercisesDatasource {
   }) => _apiManager.get(
     '/v1/exercises',
     queryParameters: {
-      'name': ?name,
-      'type': ?type,
-      'muscle': ?muscle,
-      'difficulty': ?difficulty,
+      'name': name,
+      'type': type,
+      'muscle': muscle,
+      'difficulty': difficulty,
       if (equipments?.isNotEmpty ?? false) 'equipment': equipments!.first,
     },
     mockReplyParams: MockReplyParams(
-      mockPath: 'exercises_list_mock',
+      mockPath: 'assets/api/mock/exercises_list_mock',
       status: HttpStatusEnum.ok,
     ),
   );

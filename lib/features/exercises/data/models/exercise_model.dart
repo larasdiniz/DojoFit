@@ -4,7 +4,7 @@ extension type ExerciseModel(ExerciseEntity entity) implements ExerciseEntity {
   ExerciseModel.fromJson(Map<String, dynamic> json)
     : entity = ExerciseEntity(
         name: json['name'] ?? '',
-        type: json['ype'] ?? '',
+        type: json['type'] ?? '',
         muscle: json['muscle'] ?? '',
         difficulty: json['difficulty'] ?? '',
         equipments: (json['equipments'] as List? ?? [])

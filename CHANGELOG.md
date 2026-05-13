@@ -1,5 +1,11 @@
 # CHANGELOG do DojoFit
 
+## 0.3.1
+
+* fix: correção da sintaxe de query parameters no `ExercisesDatasource`
+* fix: ajuste no mapeamento do `ExerciseModel` para suportar campos nulos da API (Null Safety)
+* test: implementação de testes unitários para o `ExerciseModel` validando a estrutura real da API
+
 ## 0.3.0
 
 * feat: implementação da camada de Network (Config, Logger e ErrorHandler) utilizando `pop_network`

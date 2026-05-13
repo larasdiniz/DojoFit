@@ -98,5 +98,36 @@ void main() {
         expect(failure.message, contains('400'));
       }, (success) => fail('Deveria ter retornado um erro'));
     });
+
+    test(
+      'Deve retornar um ServerFailure quando o mapeamento do model falhar (JSON malformatado)',
+      () async {
+        // arrange
+        final tApiResultInvalidData = Response(
+          requestOptions: RequestOptions(path: ''),
+          data: {'not_a_list': 'error'},
+          statusCode: 200,
+        );
+        when(
+          () => dataSource.getExercises(
+            name: any(named: 'name'),
+            type: any(named: 'type'),
+            muscle: any(named: 'muscle'),
+            difficulty: any(named: 'difficulty'),
+            equipments: any(named: 'equipments'),
+          ),
+        ).thenAnswer((_) async => tApiResultInvalidData);
+        // act
+        // act
+        final result = await repository.getExercises();
+
+        // assert
+        expect(result.isLeft(), true);
+        result.fold(
+          (failure) => expect(failure, isA<ServerFailure>()),
+          (success) => fail('Deveria ter retornado uma falha de processamento'),
+        );
+      },
+    );
   });
 }

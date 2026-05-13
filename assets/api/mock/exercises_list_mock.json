@@ -1,18 +1,32 @@
 [
   {
-    "name": "Biceps Curl",
+    "name": "Incline Hammer Curls",
     "type": "strength",
     "muscle": "biceps",
     "equipment": "dumbbell",
     "difficulty": "beginner",
-    "instructions": "Stand up straight..."
+    "instructions": "Seat yourself on an incline bench with a dumbbell in each hand. You should pressed firmly against he back with your feet together. Allow the dumbbells to hang straight down at your side, holding them with a neutral grip. This will be your starting position. Initiate the movement by flexing at the elbow, attempting to keep the upper arm stationary. Continue to the top of the movement and pause, then slowly return to the start position.",
+    "safety_info": "Keep your back firmly against the incline bench with feet together; keep upper arms stationary and move only at the elbows.",
+    "equipments": ["dumbbells", "incline bench"]
   },
   {
-    "name": "Squat",
+    "name": "Wide-grip barbell curl",
     "type": "strength",
-    "muscle": "quadriceps",
+    "muscle": "biceps",
     "equipment": "barbell",
-    "difficulty": "intermediate",
-    "instructions": "Lower your hips..."
+    "difficulty": "beginner",
+    "instructions": "Stand up with your torso upright while holding a barbell at the wide outer handle. The palm of your hands should be facing forward. The elbows should be close to the torso. This will be your starting position. While holding the upper arms stationary, curl the weights forward while contracting the biceps as you breathe out.",
+    "safety_info": "Stand upright with elbows kept close to the torso; only the forearms should move. Control the weight during descent.",
+    "equipments": ["barbell"]
+  },
+  {
+    "name": "Pushups",
+    "type": "strength",
+    "muscle": "chest",
+    "equipment": "body_only",
+    "difficulty": "beginner",
+    "instructions": "Lie on the floor face down and place your hands about 36 inches apart while holding your torso up at arms length. Next, lower yourself downward until your chest almost touches the floor as you inhale. Now breathe out and press your upper body back up to the starting position.",
+    "safety_info": "Keep your core tight and back straight. Do not let your hips sag.",
+    "equipments": ["none"]
   }
 ]
