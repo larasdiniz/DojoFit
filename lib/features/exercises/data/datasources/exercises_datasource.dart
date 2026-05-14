@@ -21,8 +21,25 @@ class ExercisesDatasource {
       if (equipments?.isNotEmpty ?? false) 'equipment': equipments!.first,
     },
     mockReplyParams: MockReplyParams(
-      mockPath: 'assets/api/mock/exercises_list_mock',
+      mockPath: _getMock(
+        name: name,
+        muscle: muscle,
+        type: type,
+        difficulty: difficulty,
+      ),
       status: HttpStatusEnum.ok,
     ),
   );
+
+  String _getMock({
+    String? name,
+    String? muscle,
+    String? type,
+    String? difficulty,
+  }) {
+    if (name == 'erro') return 'get_exercises_error';
+    if (name == 'vazio' || muscle == 'vazio') return 'get_exercises_empty';
+    if (muscle == 'chest') return 'exercises_search_chest_mock';
+    return 'exercises_list_mock';
+  }
 }
