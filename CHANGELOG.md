@@ -1,5 +1,9 @@
 # CHANGELOG do DojoFit
 
+## 0.4.0
+* feat: especialização da lógica de mocks no `ExercisesDatasource`
+* test: cobertura de cenários de mock (sucesso, erro, lista vazia e filtros específicos)
+
 ## 0.3.3
 * fix: ajuste de importacao
 
