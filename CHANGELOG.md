@@ -1,5 +1,8 @@
 # CHANGELOG do DojoFit
 
+## 0.6.0
+feat: implementar exercises cubit e estados de apresentacao com tdd
+
 ## 0.5.2
 * fix: ajuste para o mock rodar
 

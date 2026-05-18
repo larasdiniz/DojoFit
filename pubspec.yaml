@@ -1,7 +1,7 @@
 name: dojofit
 description: "A new Flutter project."
 publish_to: 'none' 
-version: 0.5.2+1
+version: 0.6.0+1
 
 environment:
   sdk: ^3.11.4
@@ -17,6 +17,8 @@ dependencies:
   pop_network: ^1.1.2
   injector: ^4.0.0
   auto_injector: ^2.1.1
+  bloc_test: ^10.0.0
+  flutter_bloc: ^9.1.1
 
 dev_dependencies:
   flutter_test:
