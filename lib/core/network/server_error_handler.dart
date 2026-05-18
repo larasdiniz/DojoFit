@@ -3,6 +3,11 @@ import 'package:pop_network/pop_network.dart';
 
 class ServerErrorHandler {
   static Failure handle(Response response) {
+    if (response.statusCode == null) {
+      return NetworkFailure(
+        'Sem conexão com a internet. Verifique seu Wi-Fi ou dados móveis',
+      );
+    }
     switch (response.statusCode) {
       case 400:
         return ServerFailure('Requisição inválida (400)');

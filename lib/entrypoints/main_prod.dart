@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../core/injectors/exercises_injector.dart';
 
 void mainProd() {

@@ -30,7 +30,7 @@ void main() {
         'type': 'strength',
         'muscle': 'biceps',
         'difficulty': 'beginner',
-        'equipment': 'dumbbell',
+        'equipments': ['dumbbell'],
         'instructions': 'Stand up straight...',
       },
     ],
@@ -140,6 +140,64 @@ void main() {
             contains('erro interno ao processar os dados'),
           );
         }, (_) => fail('Deveria retornar um Left do tipo InternalFailure'));
+      },
+    );
+
+    test(
+      'Deve retornar NetworkFailure quando a API responder com status nulo (Falta de conexão física)',
+      () async {
+        // arrange
+        final tNoConnectionResponse = Response(
+          requestOptions: RequestOptions(path: ''),
+          data: 'No internet connection',
+          statusCode: null,
+        );
+
+        when(
+          () => dataSource.getExercises(
+            name: any(named: 'name'),
+            type: any(named: 'type'),
+            muscle: any(named: 'muscle'),
+            difficulty: any(named: 'difficulty'),
+            equipments: any(named: 'equipments'),
+          ),
+        ).thenAnswer((_) async => tNoConnectionResponse);
+
+        // act
+        final result = await repository.getExercises();
+
+        // assert
+        expect(result.isLeft(), true);
+        result.fold((failure) {
+          expect(failure, isA<NetworkFailure>());
+          expect(failure.message, contains('Sem conexão com a internet'));
+        }, (_) => fail('Deveria retornar um NetworkFailure'));
+      },
+    );
+
+    test(
+      'Deve retornar NetworkFailure quando o datasource estourar uma exceção nativa de timeout do Dart',
+      () async {
+        // arrange
+        when(
+          () => dataSource.getExercises(
+            name: any(named: 'name'),
+            type: any(named: 'type'),
+            muscle: any(named: 'muscle'),
+            difficulty: any(named: 'difficulty'),
+            equipments: any(named: 'equipments'),
+          ),
+        ).thenThrow(Exception('Connection timeout'));
+
+        // act
+        final result = await repository.getExercises();
+
+        // assert
+        expect(result.isLeft(), true);
+        result.fold(
+          (failure) => expect(failure, isA<NetworkFailure>()),
+          (_) => fail('Deveria retornar um NetworkFailure'),
+        );
       },
     );
   });

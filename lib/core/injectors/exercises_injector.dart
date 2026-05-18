@@ -1,10 +1,11 @@
 import 'package:auto_injector/auto_injector.dart';
-import '../network/network_config.dart';
+import 'package:pop_network/pop_network.dart';
+
 import '../../features/exercises/data/datasources/exercises_datasource.dart';
 import '../../features/exercises/data/repositories/exercises_repository_impl.dart';
 import '../../features/exercises/domain/repositories/i_exercises_repository.dart';
 import '../../features/exercises/domain/usecases/get_exercises_usecase.dart';
-import 'package:pop_network/pop_network.dart';
+import '../network/network_config.dart';
 
 AutoInjector exercisesInjectorModule({bool isMock = false}) => AutoInjector(
   tag: 'exercisesInjectorModule',

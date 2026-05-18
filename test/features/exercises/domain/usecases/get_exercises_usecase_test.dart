@@ -62,5 +62,31 @@ void main() {
         (right) => fail('Esperava-se um Left, mas recebeu um Right'),
       );
     });
+
+    test(
+      'Deve retornar um InternalFailure quando o repositorio reportar erro do app',
+      () async {
+        // arrange
+        when(
+          () => mockExercisesRepository.getExercises(
+            muscle: any(named: 'muscle'),
+          ),
+        ).thenAnswer(
+          (_) async => Left(
+            InternalFailure('Ocorreu um erro interno ao processar os dados'),
+          ),
+        );
+
+        // act
+        final result = await getExercisesUseCase(muscle: 'chest');
+
+        // assert
+        expect(result.isLeft(), true);
+        result.fold(
+          (left) => expect(left, isA<InternalFailure>()),
+          (right) => fail('Esperava-se um Left, mas recebeu um Right'),
+        );
+      },
+    );
   });
 }

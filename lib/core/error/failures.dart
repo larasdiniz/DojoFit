@@ -13,7 +13,7 @@ class NetworkFailure extends Failure {
   NetworkFailure(super.message);
 }
 
-// Erro para quando o app flahar ao processar o dado da API
+// Erro para quando o app falhar ao processar o dado da API
 class InternalFailure extends Failure {
   InternalFailure(super.message);
 }

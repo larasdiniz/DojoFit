@@ -1,5 +1,8 @@
 # CHANGELOG do DojoFit
 
+## 0.5.1
+* fix: ajuste para o `NetworkFailure`
+
 ## 0.5.0
 * feat: implementação do `InternalFailure`
 
