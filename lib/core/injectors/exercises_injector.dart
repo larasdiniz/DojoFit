@@ -1,4 +1,5 @@
 import 'package:auto_injector/auto_injector.dart';
+import 'package:dojofit/core/network/network_logger.dart';
 import 'package:pop_network/pop_network.dart';
 
 import '../../features/exercises/data/datasources/exercises_datasource.dart';
@@ -18,6 +19,8 @@ AutoInjector exercisesInjectorModule({bool isMock = false}) => AutoInjector(
       ),
     );
 
+    i.addSingleton<NetworkLogger>(NetworkLogger.new);
+
     i.addSingleton<ExercisesDatasource>(ExercisesDatasource.new);
 
     i.addSingleton<IExercisesRepository>(
@@ -26,6 +29,6 @@ AutoInjector exercisesInjectorModule({bool isMock = false}) => AutoInjector(
 
     i.addSingleton<GetExercisesUseCase>(GetExercisesUseCase.new);
 
-    i.commit();
+    // i.commit();
   },
 );

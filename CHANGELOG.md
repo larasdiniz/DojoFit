@@ -1,5 +1,8 @@
 # CHANGELOG do DojoFit
 
+## 0.5.2
+* fix: ajuste para o mock rodar
+
 ## 0.5.1
 * fix: ajuste para o `NetworkFailure`
 
