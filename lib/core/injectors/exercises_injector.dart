@@ -20,8 +20,8 @@ AutoInjector exercisesInjectorModule({bool isMock = false}) => AutoInjector(
     i.addSingleton<ExercisesDatasource>(ExercisesDatasource.new);
 
     i.addSingleton<IExercisesRepository>(
-      ExercisesRepositoryImpl.new,
-    ); // isso é inversao de dependencia
+      () => ExercisesRepositoryImpl(datasource: i.get(), logger: i.get()),
+    ); // isso é injecao de dependencia
 
     i.addSingleton<GetExercisesUseCase>(GetExercisesUseCase.new);
 

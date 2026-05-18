@@ -3,7 +3,7 @@ import 'package:pop_network/pop_network.dart';
 class ExercisesDatasource {
   final IApiManager _apiManager;
 
-  ExercisesDatasource(this._apiManager); // isso é injecao de dependencia
+  ExercisesDatasource(this._apiManager); // isso é iversao de dependencia
 
   Future<Response<dynamic>> getExercises({
     String? name,

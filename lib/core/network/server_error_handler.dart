@@ -1,7 +1,7 @@
 import '../error/failures.dart';
 import 'package:pop_network/pop_network.dart';
 
-class NetworkErrorHandler {
+class ServerErrorHandler {
   static Failure handle(Response response) {
     switch (response.statusCode) {
       case 400:

@@ -1,4 +1,6 @@
 import 'package:dartz/dartz.dart';
+import 'package:dojofit/core/network/server_error_handler.dart';
+import 'package:dojofit/core/network/network_logger.dart';
 import '../../../../core/error/failures.dart';
 import '../../domain/entities/exercise_entity.dart';
 import '../../domain/repositories/i_exercises_repository.dart';
@@ -7,9 +9,13 @@ import '../models/exercise_model.dart';
 
 class ExercisesRepositoryImpl implements IExercisesRepository {
   final ExercisesDatasource _datasource;
+  final NetworkLogger _logger;
 
-  ExercisesRepositoryImpl({required ExercisesDatasource datasource})
-    : _datasource = datasource;
+  ExercisesRepositoryImpl({
+    required ExercisesDatasource datasource,
+    required NetworkLogger logger,
+  }) : _datasource = datasource,
+       _logger = logger;
 
   @override
   Future<Either<Failure, List<ExerciseEntity>>> getExercises({
@@ -28,16 +34,17 @@ class ExercisesRepositoryImpl implements IExercisesRepository {
     );
     try {
       if (result.statusCode == 200) {
-        final List<dynamic> data = result.data;
-        final list = data
-            .map((e) => ExerciseModel.fromJson(e as Map<String, dynamic>))
-            .toList();
-
+        final List<dynamic> data = result.data ?? [];
+        final list = data.map((e) => ExerciseModel.fromJson(e)).toList();
         return Right(list);
       }
-      return Left(ServerFailure('Erro na API: ${result.statusCode}'));
-    } catch (e) {
-      return Left(ServerFailure('Falha ao processar dados: $e'));
+      return Left(ServerErrorHandler.handle(result));
+    } catch (e, stackTrace) {
+      _logger.logPrint('Erro ao processar Exercise: $e');
+      _logger.logPrint('Stacktrace: $stackTrace');
     }
+    return Left(
+      ServerFailure('Ocorreu um erro inesperado ao carregar os exercícios'),
+    );
   }
 }

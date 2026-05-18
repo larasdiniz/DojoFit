@@ -1,10 +1,10 @@
 import 'package:dojofit/core/error/failures.dart';
-import 'package:dojofit/core/network/network_error_handler.dart';
+import 'package:dojofit/core/network/server_error_handler.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:pop_network/pop_network.dart';
 
 void main() {
-  group('NetworkErrorHandler', () {
+  group('ServerErrorHandler', () {
     test(
       'Deve retornar ServerFailure com mensagem de "Requisição inválida" quando o status for 400',
       () {
@@ -15,7 +15,7 @@ void main() {
         );
 
         // Act
-        final result = NetworkErrorHandler.handle(response);
+        final result = ServerErrorHandler.handle(response);
 
         // Assert
         expect(result, isA<ServerFailure>());
@@ -33,7 +33,7 @@ void main() {
         );
 
         // Act
-        final result = NetworkErrorHandler.handle(response);
+        final result = ServerErrorHandler.handle(response);
 
         // Assert
         expect(result, isA<ServerFailure>());
@@ -51,7 +51,7 @@ void main() {
         );
 
         // Act
-        final result = NetworkErrorHandler.handle(response);
+        final result = ServerErrorHandler.handle(response);
 
         // Assert
         expect(result, isA<ServerFailure>());
@@ -69,7 +69,7 @@ void main() {
         );
 
         // Act
-        final result = NetworkErrorHandler.handle(response);
+        final result = ServerErrorHandler.handle(response);
 
         // Assert
         expect(result, isA<ServerFailure>());
@@ -87,7 +87,7 @@ void main() {
         );
 
         // Act
-        final result = NetworkErrorHandler.handle(response);
+        final result = ServerErrorHandler.handle(response);
 
         // Assert
         expect(result, isA<ServerFailure>());

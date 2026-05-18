@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../core/injectors/exercises_injector.dart';
 
-void main() {
+void mainMock() {
   WidgetsFlutterBinding.ensureInitialized();
 
   final injector = exercisesInjectorModule(isMock: true);

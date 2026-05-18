@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dojofit/core/error/failures.dart';
+import 'package:dojofit/core/network/network_logger.dart';
 import 'package:dojofit/features/exercises/data/datasources/exercises_datasource.dart';
 import 'package:dojofit/features/exercises/data/repositories/exercises_repository_impl.dart';
 import 'package:dojofit/features/exercises/domain/entities/exercise_entity.dart';
@@ -8,14 +9,19 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:pop_network/pop_network.dart';
 
-// 1. Criamos o Mock do Datasource
 class MockExercisesDatasource extends Mock implements ExercisesDatasource {}
+
+class TestNetworkLogger extends NetworkLogger {
+  TestNetworkLogger() {
+    logPrint = (Object object) {};
+  }
+}
 
 void main() {
   late ExercisesRepositoryImpl repository;
   late MockExercisesDatasource dataSource;
+  late TestNetworkLogger logger;
 
-  // 2. Preparamos os objetos de resposta (Mocks de Dados)
   final tApiResultSuccess = Response(
     requestOptions: RequestOptions(path: ''),
     data: [
@@ -31,7 +37,6 @@ void main() {
     statusCode: 200,
   );
 
-  // Simulando um erro de servidor (ex: 400)
   final tApiResultError = Response(
     requestOptions: RequestOptions(path: ''),
     data: 'Erro no servidor',
@@ -39,10 +44,14 @@ void main() {
   );
 
   setUp(() {
-    // Silencia erros de Flutter durante o teste (como no padrão Banese)
     FlutterError.onError = (FlutterErrorDetails details) {};
     dataSource = MockExercisesDatasource();
-    repository = ExercisesRepositoryImpl(datasource: dataSource);
+    logger = TestNetworkLogger();
+
+    repository = ExercisesRepositoryImpl(
+      datasource: dataSource,
+      logger: logger,
+    );
   });
 
   tearDown(() {
@@ -117,7 +126,7 @@ void main() {
             equipments: any(named: 'equipments'),
           ),
         ).thenAnswer((_) async => tApiResultInvalidData);
-        // act
+
         // act
         final result = await repository.getExercises();
 
@@ -125,7 +134,7 @@ void main() {
         expect(result.isLeft(), true);
         result.fold(
           (failure) => expect(failure, isA<ServerFailure>()),
-          (success) => fail('Deveria ter retornado uma falha de processamento'),
+          (_) => fail('Deveria ser Left'),
         );
       },
     );
