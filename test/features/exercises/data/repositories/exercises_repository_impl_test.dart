@@ -109,14 +109,15 @@ void main() {
     });
 
     test(
-      'Deve retornar um ServerFailure quando o mapeamento do model falhar (JSON malformatado)',
+      'Deve retornar um InternalFailure quando o mapeamento do model falhar (JSON malformatado)',
       () async {
         // arrange
         final tApiResultInvalidData = Response(
           requestOptions: RequestOptions(path: ''),
-          data: {'not_a_list': 'error'},
+          data: {'campo_errado': 'isso deveria ser uma lista, mas é um map'},
           statusCode: 200,
         );
+
         when(
           () => dataSource.getExercises(
             name: any(named: 'name'),
@@ -132,10 +133,13 @@ void main() {
 
         // assert
         expect(result.isLeft(), true);
-        result.fold(
-          (failure) => expect(failure, isA<ServerFailure>()),
-          (_) => fail('Deveria ser Left'),
-        );
+        result.fold((failure) {
+          expect(failure, isA<InternalFailure>());
+          expect(
+            failure.message,
+            contains('erro interno ao processar os dados'),
+          );
+        }, (_) => fail('Deveria retornar um Left do tipo InternalFailure'));
       },
     );
   });

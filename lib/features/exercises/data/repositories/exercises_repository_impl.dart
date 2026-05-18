@@ -44,7 +44,9 @@ class ExercisesRepositoryImpl implements IExercisesRepository {
       _logger.logPrint('Stacktrace: $stackTrace');
     }
     return Left(
-      ServerFailure('Ocorreu um erro inesperado ao carregar os exercícios'),
+      InternalFailure(
+        'Ocorreu um erro interno ao processar os dados dos exercícios',
+      ),
     );
   }
 }

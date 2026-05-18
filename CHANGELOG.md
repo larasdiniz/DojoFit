@@ -1,5 +1,8 @@
 # CHANGELOG do DojoFit
 
+## 0.5.0
+* feat: implementação do `InternalFailure`
+
 ## 0.4.1
 * fix: ajuste para o logger no `ExercisesDatasource` e correçaõ do `ServerErrorHandler`
 
