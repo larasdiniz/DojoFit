@@ -30,6 +30,20 @@ android {
         versionName = flutter.versionName
     }
 
+    flavorDimensions.add("default")
+
+    productFlavors {
+        create("mock") {
+            dimension = "default"
+            applicationIdSuffix = ".mock"
+            resValue("string", "app_name", "DojoFit Mock")
+        }
+        create("prod") {
+            dimension = "default"
+            resValue("string", "app_name", "DojoFit")
+        }
+    }
+
     buildTypes {
         release {
             // TODO: Add your own signing config for the release build.

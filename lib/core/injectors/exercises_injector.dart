@@ -29,6 +29,6 @@ AutoInjector exercisesInjectorModule({bool isMock = false}) => AutoInjector(
 
     i.addSingleton<GetExercisesUseCase>(GetExercisesUseCase.new);
 
-    // i.commit();
+    i.commit();
   },
 );

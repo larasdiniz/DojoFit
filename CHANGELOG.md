@@ -1,7 +1,10 @@
 # CHANGELOG do DojoFit
 
+## 0.7.0
+* feat: implementar exercises page e ajuste o injection para o mock
+
 ## 0.6.0
-feat: implementar exercises cubit e estados de apresentacao com tdd
+* feat: implementar exercises cubit e estados de apresentacao com tdd
 
 ## 0.5.2
 * fix: ajuste para o mock rodar

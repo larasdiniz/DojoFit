@@ -1,9 +1,10 @@
+import 'dart:io'; // Para usar o HttpStatusEnum ou similar se necessário, ou pegue do pop_network
 import 'package:pop_network/pop_network.dart';
 
 class ExercisesDatasource {
   final IApiManager _apiManager;
 
-  ExercisesDatasource(this._apiManager); // isso é iversao de dependencia
+  ExercisesDatasource(this._apiManager); // Isso é inversão de dependência
 
   Future<Response<dynamic>> getExercises({
     String? name,
@@ -37,9 +38,15 @@ class ExercisesDatasource {
     String? type,
     String? difficulty,
   }) {
-    if (name == 'erro') return 'get_exercises_error';
-    if (name == 'vazio' || muscle == 'vazio') return 'get_exercises_empty';
-    if (muscle == 'chest') return 'exercises_search_chest_mock';
-    return 'exercises_list_mock';
+    if (name == 'erro') {
+      return 'assets/api/mock/get_exercises_error.json';
+    }
+    if (name == 'vazio' || muscle == 'vazio') {
+      return 'assets/api/mock/get_exercises_empty.json';
+    }
+    if (muscle == 'chest') {
+      return 'assets/api/mock/exercises_search_chest_mock.json';
+    }
+    return 'assets/api/mock/exercises_list_mock.json';
   }
 }

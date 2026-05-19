@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 import '../core/injectors/exercises_injector.dart';
+import '../features/exercises/presentation/pages/exercises_page.dart';
 
 void mainMock() {
   WidgetsFlutterBinding.ensureInitialized();
 
   final injector = exercisesInjectorModule(isMock: true);
-
-  injector.commit();
+  // injector.commit();
 
   runApp(
     const MaterialApp(
-      home: Scaffold(body: Center(child: Text('DojoFit - Ambiente MOCK'))),
+      debugShowCheckedModeBanner: false,
+      home: ExercisesPage(ambiente: 'MOCK (Dados Locais)'),
     ),
   );
 }
