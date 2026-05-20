@@ -1,5 +1,8 @@
 # CHANGELOG do DojoFit
 
+## 0.7.1
+* fix: ajuste de strings e imports
+
 ## 0.7.0
 * feat: implementar exercises page e ajuste o injection para o mock
 

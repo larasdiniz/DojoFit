@@ -1,5 +1,5 @@
 import 'package:auto_injector/auto_injector.dart';
-import 'package:dojofit/core/network/network_logger.dart';
+import '../network/network_logger.dart';
 import 'package:pop_network/pop_network.dart';
 
 import '../../features/exercises/data/datasources/exercises_datasource.dart';

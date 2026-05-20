@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
-import '../../../../core/network/server_error_handler.dart';
-import '../../../../core/network/network_logger.dart';
+
 import '../../../../core/error/failures.dart';
+import '../../../../core/network/network_logger.dart';
+import '../../../../core/network/server_error_handler.dart';
 import '../../domain/entities/exercise_entity.dart';
 import '../../domain/repositories/i_exercises_repository.dart';
 import '../datasources/exercises_datasource.dart';

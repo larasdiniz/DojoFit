@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import 'item_filter_chip.dart';
 
 class FilterChipList extends StatefulWidget {

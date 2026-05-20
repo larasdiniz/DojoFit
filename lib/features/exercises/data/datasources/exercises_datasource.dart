@@ -1,4 +1,3 @@
-import 'dart:io'; // Para usar o HttpStatusEnum ou similar se necessário, ou pegue do pop_network
 import 'package:pop_network/pop_network.dart';
 
 class ExercisesDatasource {

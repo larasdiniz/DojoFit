@@ -11,6 +11,18 @@
             "type": "dart"
         },
         {
+            "name": "dojofit (prod)",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main.dart",
+            "args": [
+                "--flavor",
+                "prod",
+                "--target",
+                "lib/main.dart"
+            ]
+        },
+        {
             "name": "dojofit (mock)",
             "request": "launch",
             "type": "dart",

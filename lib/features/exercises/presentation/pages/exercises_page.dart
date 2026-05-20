@@ -21,7 +21,6 @@ class ExercisesPage extends StatefulWidget {
 class _ExercisesPageState extends State<ExercisesPage> {
   late final ExercisesCubit _cubit;
 
-  // Guardamos os últimos parâmetros para o botão "Tentar Novamente" saber o que buscar
   String _ultimoMuscle = 'chest';
   String? _ultimoName;
 
@@ -29,26 +28,19 @@ class _ExercisesPageState extends State<ExercisesPage> {
   void initState() {
     super.initState();
 
-    // 1. 🟢 Descobrimos se a tela foi aberta pelo ambiente de MOCK olhando a String que veio do main
     final isMockEnv = widget.ambiente.contains('MOCK');
 
-    // 2. 🟢 Passamos esse booleano para o injetor corporativo.
-    // Assim, se for o mainMock, o isMock vira TRUE e liga o mock do PopNetwork!
     final moduloInjecao = exercisesInjectorModule(isMock: isMockEnv);
 
-    // 3. 🟢 Buscamos o Caso de Uso do módulo já configurado com o ambiente certo
     final useCase = moduloInjecao.get<GetExercisesUseCase>();
 
-    // 4. Instanciamos o Cubit injetando o Caso de Uso
     _cubit = ExercisesCubit(getExercisesUseCase: useCase);
 
-    // 5. Disparamos a busca inicial padrão
     _cubit.loadExercises(muscle: _ultimoMuscle);
   }
 
   @override
   void dispose() {
-    // Sempre fechar o Cubit para evitar vazamento de memória (Memory Leak)
     _cubit.close();
     super.dispose();
   }
@@ -64,11 +56,9 @@ class _ExercisesPageState extends State<ExercisesPage> {
         appBar: AppBar(
           title: Text(AppStrings.tituloApp.texto),
           bottom: PreferredSize(
-            // Se for MOCK, aumentamos a barra para caber os botões de teste dos JSONs
             preferredSize: Size.fromHeight(isMock ? 64 : 24),
             child: Column(
               children: [
-                // Faixa colorida indicando o ambiente ativo (Amber para Mock, Verde para Prod)
                 Container(
                   color: statusColor,
                   width: double.infinity,
@@ -82,14 +72,12 @@ class _ExercisesPageState extends State<ExercisesPage> {
                     ),
                   ),
                 ),
-                // Se o ambiente for MOCK, injetamos a lista de botões para testar os arquivos locais
                 if (isMock)
                   FilterChipList(
                     onFilterChanged: (tipo, {muscle, name}) {
                       _ultimoMuscle = muscle ?? '';
                       _ultimoName = name;
 
-                      // O chip avisa que mudou e o Cubit dispara a busca do JSON correspondente
                       _cubit.loadExercises(muscle: muscle, name: name);
                     },
                   ),
@@ -99,7 +87,6 @@ class _ExercisesPageState extends State<ExercisesPage> {
         ),
         body: BlocBuilder<ExercisesCubit, ExercisesState>(
           builder: (context, state) {
-            // CASO 1: Estado de Carregamento (Loading)
             if (state is ExercisesLoading) {
               return Center(
                 child: Column(
@@ -113,7 +100,6 @@ class _ExercisesPageState extends State<ExercisesPage> {
               );
             }
 
-            // CASO 2: Estado de Erro (Bateu no JSON get_exercises_error)
             if (state is ExercisesError) {
               return ComponenteErro(
                 mensagem: state.message,
@@ -124,21 +110,17 @@ class _ExercisesPageState extends State<ExercisesPage> {
               );
             }
 
-            // CASO 3: Estado de Sucesso (Leu a lista do JSON ou da API real)
             if (state is ExercisesSuccess) {
-              // Se o JSON retornou uma lista vazia [] (Caso do get_exercises_empty)
               if (state.exercises.isEmpty) {
                 return Center(child: Text(AppStrings.nenhumExercicio.texto));
               }
 
-              // Se a lista veio cheia, renderiza o ListView na tela
               return ListView.builder(
                 itemCount: state.exercises.length,
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 itemBuilder: (context, index) {
                   final exercise = state.exercises[index];
 
-                  // Consome o widget de Card isolado passando as informações mapeadas do JSON
                   return CardExercicio(
                     nome: exercise.name,
                     categoria: exercise.type,
